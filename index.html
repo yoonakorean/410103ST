@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>9-1 句子聽打挑戰</title>
+<title>1-3 句子聽打挑戰</title>
 <style>
 body { font-family: sans-serif; max-width: 600px; margin: auto; text-align: center; padding: 30px 15px; }
 #logo, #logo-game { width: 150px; max-width: 80%; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto; }
@@ -56,18 +56,16 @@ if (password !== "1231") { alert("密碼錯誤，無法進入！"); window.locat
 
 <script>
 const questions = [
-  { audio: "12090101S.mp3", answer: "우리 집에 와서 밥을 먹어요.", chinese: "來我們家吃飯。" },
-  { audio: "12090102S.mp3", answer: "빨리 집에 가서 쉬어요.", chinese: "快點回家休息。" },
-  { audio: "12090103S.mp3", answer: "전화해서 물어보세요.", chinese: "請打電話問看看。" },
-  { audio: "12090104S.mp3", answer: "생일 선물을 사서 줬어요.", chinese: "買了生日禮物給他。" },
-  { audio: "12090105S.mp3", answer: "오후에 병원에 가서 주사를 맞았어요.", chinese: "下午去醫院打針了。" },
-  { audio: "12090106S.mp3", answer: "저녁에 국밥을 만들어서 먹을 거예요.", chinese: "晚餐要煮湯飯來吃。" },
-  { audio: "12090107S.mp3", answer: "아침에 일찍 일어나서 일했어요.", chinese: "早上很早就起床工作了。" },
-  { audio: "12090108S.mp3", answer: "변호사와 앉아서 얘기하고 있어요.", chinese: "正在和律師坐著聊天。" },
-  { audio: "12090109S.mp3", answer: "돈을 찾아서 월세를 냈어요.", chinese: "領錢繳了房租。" },
-  { audio: "12090110S.mp3", answer: "휴게소에 들어서 음료수를 샀어요.", chinese: "去休息站買了飲料。" },
-  { audio: "12090111S.mp3", answer: "밤에 학교에 남아서 시험 공부할 거예요.", chinese: "晚上要留在學校準備考試。" },
-  { audio: "12090112S.mp3", answer: "옷을 벗어서 옷걸이에 걸어요.", chinese: "把衣服脫下來掛在衣架上。" }
+  { audio: "41010301S.mp3", answer: "이 도시는 살기 편하지만, 물가가 비싸다는 점이 좀 아쉬워." },
+  { audio: "41010302S.mp3", answer: "서울의 가장 큰 특징은 도시인데도 산이 많다는 점이다." },
+  { audio: "41010303S.mp3", answer: "무엇보다 중요한 것은 내가 그를 사랑한다는 것이야." },
+  { audio: "41010304S.mp3", answer: "새로 온 직원의 장점은 손재주가 좋다는 점이다." },
+  { audio: "41010305S.mp3", answer: "나의 단점은 적극적이지 못하다는 점이다." },
+  { audio: "41010306S.mp3", answer: "이 식당은 하루에 손님을 10팀만 받는 것이 특별한 점이다." },
+  { audio: "41010307S.mp3", answer: "커피나 차는 몸의 수분을 빼앗는다는 것이 사실일까?" },
+  { audio: "41010308S.mp3", answer: "이 카드는 포인트 적립이 빠르다는 점이 장점이다." },
+  { audio: "41010309S.mp3", answer: "한국어의 특징은 높임말이 있다는 점이다." },
+  { audio: "41010310S.mp3", answer: "한국과 대만 날씨的 차이점은 습도가 다르다는 것이에요." }
 ];
 
 const modeSelectDiv = document.getElementById("mode-select");
@@ -102,8 +100,8 @@ let currentMode = null;
 let startTime = null; // 記錄挑戰開始時間
 
 // 顯示標題與送表單標題
-const displayTitle = "9-1 句子聽打挑戰";
-const fullTitle = "12-9-1 句子聽打挑戰";
+const displayTitle = "1-3 句子聽打挑戰";
+const fullTitle = "41-1-3 句子聽打挑戰";
 
 function shuffle(array){for(let i=array.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[array[i],array[j]]=[array[j],array[i]];}return array;}
 
@@ -120,14 +118,14 @@ function showGameArea(){
   nicknameSection.classList.add("hidden");
   timerDiv.style.display=currentMode==="challenge"?"block":"none";
   submitBtn.disabled=true;
-  gameTitle.textContent = displayTitle; // 顯示給玩家的標題
+  gameTitle.textContent = displayTitle;
   if(currentMode==="challenge"){
     timeLeft=shuffledQuestions.length*50;
     timerDiv.textContent=`剩餘時間：${timeLeft} 秒`;
   } else {
     timerDiv.textContent="";
   }
-  startTime = Date.now(); // 開始挑戰時間
+  startTime = Date.now();
 }
 
 function resetGameVars(){
@@ -169,8 +167,8 @@ checkBtn.addEventListener("click",()=>{
   const userAns=answerInput.value.trim();
   const q=shuffledQuestions[current];
   const correctAns=q.answer.trim();
-  if(userAns===correctAns){resultDiv.innerHTML=`✅ 答對了🎉 你真棒👍🏻<br>📘 中文：<strong>${q.chinese}</strong>`; correct++;}
-  else{resultDiv.innerHTML=`❌ 錯誤。正確答案是：<strong>${correctAns}</strong><br>📘 中文：<strong>${q.chinese}</strong>`;}
+  if(userAns===correctAns){resultDiv.innerHTML=`✅ 答對了🎉 你真棒👍🏻`; correct++;}
+  else{resultDiv.innerHTML=`❌ 錯誤。正確答案是：<strong>${correctAns}</strong>`;}
   answerInput.disabled=true; checkBtn.disabled=true; nextBtn.style.display="block"; resultDiv.style.display="block";
 });
 
@@ -198,7 +196,7 @@ function endGame(){
 submitBtn.addEventListener("click",()=>{
   const nickname=nicknameInput.value.trim();
   if(!nickname||finalScore<80)return;
-  const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000); // 花費時間秒數
+  const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
   const weekdayNames=["日","一","二","三","四","五","六"];
   const weekday=weekdayNames[new Date().getDay()];
   
@@ -206,9 +204,9 @@ submitBtn.addEventListener("click",()=>{
   const formData=new FormData();
   formData.append("entry.1082970818",nickname);
   formData.append("entry.851626887",finalScore);
-  formData.append("entry.498226528",elapsedSeconds + " 秒"); // 回傳花費秒數
+  formData.append("entry.498226528",elapsedSeconds + " 秒");
   formData.append("entry.532888754",weekday);
-  formData.append("entry.1110600272",fullTitle); // 使用完整標題回傳表單
+  formData.append("entry.1110600272",fullTitle);
   
   fetch(formURL,{method:"POST",body:formData,mode:"no-cors"})
     .then(()=>alert("成績已送出，謝謝！"))
