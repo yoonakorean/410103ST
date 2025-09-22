@@ -104,7 +104,13 @@ const displayTitle = "1-3 句子聽打挑戰";
 const fullTitle = "41-1-3 句子聽打挑戰";
 
 function shuffle(array){for(let i=array.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[array[i],array[j]]=[array[j],array[i]];}return array;}
+// 抽六題
 
+function getSixQuestions(){
+
+  return shuffle([...questions]).slice(0,6);
+
+}
 function showModeSelect(){
   modeSelectDiv.style.display="block";
   gameAreaDiv.classList.add("hidden");
@@ -137,7 +143,7 @@ function resetGameVars(){
 }
 
 function loadQuestion(){
-  if(shuffledQuestions.length===0){shuffledQuestions=shuffle([...questions]);}
+  if(shuffledQuestions.length===0){shuffledQuestions=getSixQuestions();}
   if(current>=shuffledQuestions.length){endGame();return;}
   const q=shuffledQuestions[current];
   audioEl.src=q.audio;
@@ -156,8 +162,8 @@ function startTimer(){
   },1000);
 }
 
-modePracticeBtn.addEventListener("click",()=>{currentMode="practice"; shuffledQuestions=shuffle([...questions]); resetGameVars(); showGameArea(); loadQuestion();});
-modeChallengeBtn.addEventListener("click",()=>{currentMode="challenge"; shuffledQuestions=shuffle([...questions]); resetGameVars(); showGameArea(); loadQuestion();});
+modePracticeBtn.addEventListener("click",()=>{currentMode="practice"; shuffledQuestions=getSixQuestions(); resetGameVars(); showGameArea(); loadQuestion();});
+modeChallengeBtn.addEventListener("click",()=>{currentMode="challenge"; shuffledQuestions=getSixQuestions(); resetGameVars(); showGameArea(); loadQuestion();});
 
 answerInput.addEventListener("input",()=>{checkBtn.disabled=answerInput.value.trim()==="";});
 audioEl.addEventListener("play",()=>{if(currentMode==="challenge"&&!timerStarted) startTimer();});
@@ -213,7 +219,7 @@ submitBtn.addEventListener("click",()=>{
     .catch(()=>alert("無法送出成績，請稍後再試。"));
 });
 
-restartBtn.addEventListener("click",()=>{resetGameVars(); shuffledQuestions=shuffle([...questions]); showGameArea(); loadQuestion();});
+restartBtn.addEventListener("click",()=>{resetGameVars(); shuffledQuestions=getSixQuestions(); showGameArea(); loadQuestion();});
 modeReselectBtn.addEventListener("click",()=>{currentMode=null; resetGameVars(); showModeSelect();});
 
 showModeSelect();
